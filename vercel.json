@@ -1,5 +1,15 @@
 {
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "installCommand": "npm install",
+  "env": {
+    "VITE_API_URL": "@vite_api_url"
+  },
   "builds": [
+    {
+      "src": "dist/index.html",
+      "use": "@vercel/static"
+    },
     {
       "src": "api/**/*.js",
       "use": "@vercel/node"
@@ -9,6 +19,10 @@
     {
       "src": "/api/(.*)",
       "dest": "/api/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/dist/index.html"
     }
   ]
 }
